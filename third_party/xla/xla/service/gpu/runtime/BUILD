@@ -26,6 +26,7 @@ cc_library(
     name = "annotation",
     srcs = ["annotation.cc"],
     hdrs = ["annotation.h"],
+    compatible_with = get_compatible_with_portable(),
     local_defines = if_cuda_is_configured(["GOOGLE_CUDA=1"]),
     deps = [
         "//xla:printer",
@@ -246,6 +247,7 @@ cc_library(
     name = "nccl_clique",
     srcs = ["nccl_clique.cc"],
     hdrs = ["nccl_clique.h"],
+    compatible_with = get_compatible_with_portable(),
     deps = [
         ":nccl_api",
         ":nccl_clique_key",
@@ -1088,6 +1090,7 @@ cc_library(
     name = "thunk",
     srcs = ["thunk.cc"],
     hdrs = ["thunk.h"],
+    compatible_with = get_compatible_with_portable(),
     deps = [
         ":nccl_api",
         ":nccl_clique",

@@ -981,6 +981,16 @@ bool GpuInfo::SupportsSubGroupWithSize(int sub_group_size) const {
   return false;
 }
 
+int GpuInfo::GetMinSubGroupSize() const {
+  auto begin = supported_subgroup_sizes.begin();
+  auto end = supported_subgroup_sizes.end();
+  auto min = std::min_element(begin, end);
+  if (min == end) {
+    return -1;
+  }
+  return *min;
+}
+
 bool GpuInfo::SupportsFloatImage2D(DataType data_type, int channels) const {
   if (IsApiOpenCl()) {
     return opencl_info.supported_images_2d.SupportsImage2D(data_type, channels);
